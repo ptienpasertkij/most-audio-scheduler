@@ -1,0 +1,23 @@
+{
+  "schedule": [
+    {
+      "days": ["Mon, Wed, Fri"],
+      "time": "08:00",
+      "file": "/path/to/file1.mp3"
+    },
+    {
+      "days": ["Tues, Thu"],
+      "time": "12:00",
+      "file": "/path/to/file2.mp3"
+    },
+    {
+      "days": ["Sat, Sun"],
+      "time": "16:00",
+      "file": "/path/to/file3.mp3"
+    },
+    {
+      "time": "20:00",
+      "file": "/path/to/file4.mp3"
+    }
+  ]
+}
