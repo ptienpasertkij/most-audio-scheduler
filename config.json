@@ -2,8 +2,23 @@
   "schedule": [
     {
       "days": ["Mon, Wed, Fri"],
-      "time": "11:10",
-      "file": "/path/to/file1.mp3"
+      "time": "11:30",
+      "file": "/home/autoannc/Music/5mintest.wav"
+    },
+    {
+      "days": ["Mon, Wed, Fri"],
+      "time": "11:40",
+      "file": "/home/autoannc/Music/5mintest.wav"
+    },
+    {
+      "days": ["Mon, Wed, Fri"],
+      "time": "11:50",
+      "file": "/home/autoannc/Music/5mintest.wav"
+    },
+    {
+      "days": ["Mon, Wed, Fri"],
+      "time": "12:00",
+      "file": "/home/autoannc/Music/5mintest.wav"
     }
   ]
 }

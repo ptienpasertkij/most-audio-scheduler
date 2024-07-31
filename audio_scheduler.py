@@ -20,18 +20,23 @@ def play_audio(file):
 
 def main(config_file):
     schedule = load_schedule(config_file)
+    played_times = set()
     while True:
         now = datetime.now()
         current_time = now.strftime("%H:%M")
-        print(f"Current time: {now.strftime('%Y-%m-%d %H:%M:%S')}")
-        # current_day = now.strftime("%a")
+        current_day = now.strftime("%a")
+        print(f"Current time: {now.strftime('%Y-%m-%d %H:%M:%S')}, Current day: {current_day}")
         for entry in schedule:
-            if current_time == entry["time"]:
-                print(f"Scheduled time: {entry['time']}")
-                play_audio(entry["file"])
-                time.sleep(
-                    60
-                )  # Wait a minute before checking the schedule again to avoid multiple plays
+            scheduled_time = entry['time']
+            if current_time == scheduled_time and current_day in entry['days']:
+                # Check if this time has been played to avoid multiple plays in the same minute
+                if (current_day, scheduled_time) not in played_times:
+                    print(f"Scheduled time: {entry['time']}, Day: {current_day}")
+                    play_audio(entry['file'])
+                    played_times.add((current_day, scheduled_time))
+        # Clear played_times at the end of the minute to reset for the next minute
+        if now.second == 59:
+            played_times.clear()
         time.sleep(30)  # Check the time every 30 seconds
 
 if __name__ == "__main__":
