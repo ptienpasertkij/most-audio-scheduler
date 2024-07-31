@@ -1,4 +1,5 @@
 import vlc
+import time
 
 def play_audio(file):
     player = vlc.MediaPlayer(file)
