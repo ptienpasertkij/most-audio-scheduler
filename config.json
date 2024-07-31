@@ -1,22 +1,22 @@
 {
   "schedule": [
     {
-      "days": ["Mon, Wed, Fri"],
-      "time": "11:33",
+      "days": ["Mon", "Wed", "Fri"],
+      "time": "11:37",
       "file": "/home/autoannc/Music/5mintest.wav"
     },
     {
-      "days": ["Mon, Wed, Fri"],
+      "days": ["Mon", "Wed", "Fri"],
       "time": "11:40",
       "file": "/home/autoannc/Music/5mintest.wav"
     },
     {
-      "days": ["Mon, Wed, Fri"],
+      "days": ["Mon", "Wed", "Fri"],
       "time": "11:50",
       "file": "/home/autoannc/Music/5mintest.wav"
     },
     {
-      "days": ["Mon, Wed, Fri"],
+      "days": ["Mon", "Wed", "Fri"],
       "time": "12:00",
       "file": "/home/autoannc/Music/5mintest.wav"
     }
