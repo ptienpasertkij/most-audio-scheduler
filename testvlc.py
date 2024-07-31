@@ -9,4 +9,4 @@ def play_audio(file):
     player.stop()
 
 if __name__ == "__main__":
-    play("/home/autoannc/Music/5mintest.wav")
+    play_audio("/home/autoannc/Music/5mintest.wav")
