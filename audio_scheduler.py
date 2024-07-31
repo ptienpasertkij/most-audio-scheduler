@@ -33,4 +33,4 @@ def main(config_file):
         time.sleep(30)  # Check the time every 30 seconds
 
 if __name__ == "__main__":
-    main("/path/to/audio_schedule.json")
+    main("/home/autoannc/most-audio-scheduler/config.json")
