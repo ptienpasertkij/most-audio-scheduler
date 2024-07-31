@@ -2,7 +2,7 @@
   "schedule": [
     {
       "days": ["Mon, Wed, Fri"],
-      "time": "11:30",
+      "time": "11:33",
       "file": "/home/autoannc/Music/5mintest.wav"
     },
     {
