@@ -23,9 +23,11 @@ def main(config_file):
     while True:
         now = datetime.now()
         current_time = now.strftime("%H:%M")
-        current_day = now.strftime("%a")
+        print(f"Current time: {now.strftime('%Y-%m-%d %H:%M:%S')}")
+        # current_day = now.strftime("%a")
         for entry in schedule:
-            if current_time == entry["time"] and current_day in entry["days"]:
+            if current_time == entry["time"]:
+                print(f"Scheduled time: {entry['time']}")
                 play_audio(entry["file"])
                 time.sleep(
                     60
