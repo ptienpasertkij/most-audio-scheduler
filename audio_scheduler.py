@@ -40,7 +40,6 @@ def play_audio(file):
 
 
 def next_play_time(schedule):
-    """Calculate the next time a file should be played to optimize sleep duration."""
     now = datetime.now()
     times = []
     for entry in schedule:
@@ -49,12 +48,18 @@ def next_play_time(schedule):
                 play_time = datetime.strptime(
                     f"{now.strftime('%Y-%m-%d')} {entry['ANNC TIME']}", "%Y-%m-%d %H:%M"
                 )
-                if play_time < now:  # If today's time is past, schedule for next week
+                if play_time < now:
                     play_time += timedelta(days=7)
-                times.append(play_time)
+                times.append((play_time, entry["ANNC FILE NAME"]))
             except ValueError as e:
                 logging.error(f"Error parsing time: {e} for entry {entry}")
-    return min(times) if times else now + timedelta(days=1)
+    if times:
+        next_time, next_file = min(times)
+        logging.info(
+            f"Next scheduled file to play is '{next_file}' at {next_time.strftime('%Y-%m-%d %H:%M')}"
+        )
+        return next_time
+    return now + timedelta(days=1)
 
 
 def main(csv_file):
@@ -67,7 +72,7 @@ def main(csv_file):
         if sleep_time > 0:
             time.sleep(sleep_time)
 
-        current_time = now.strftime("%I:%M%p")
+        current_time = now.strftime("%H:%M")
         current_day = now.strftime("%a")
         logging.info(f"Checking schedule at {now}")
         for entry in schedule:
@@ -75,14 +80,13 @@ def main(csv_file):
             if current_time == scheduled_time and current_day in entry["DAYS TO PLAY"]:
                 if (current_day, scheduled_time) not in played_times:
                     logging.info(
-                        f"Event: {entry['EVENT NAME']}, Announcement Time: {entry['ANNC TIME']}, File: {entry['ANNC FILE NAME']}"
+                        f"Playing: {entry['EVENT NAME']} - {entry['ANNC FILE NAME']} at {scheduled_time}"
                     )
-                    play_audio(entry["ANNC FILE NAME"])
+                    play_audio(entry["ANNC FILE_NAME"])
                     played_times.add((current_day, scheduled_time))
                 else:
                     logging.info(f"Audio already played today at {scheduled_time}.")
 
-        # Reset played times if no upcoming plays are scheduled soon
         if now.hour == 23 and now.minute == 59:
             played_times.clear()
 
