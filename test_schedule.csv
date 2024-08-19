@@ -10,4 +10,4 @@ Movie,2:30 PM,14:20,"Mon, Tue, Wed, Sun",220movie.wav
 Movie,3:30 PM,15:20,"Mon, Tue, Wed, Sun",320movie.wav
 Pre-Closing Announcement,,16:45,"Mon, Tue, Wed, Sun",445close.wav
 Closing Announcement,,17:00,"Mon, Tue, Wed, Sun",500close.wav
-Test Announcement,,15:00,"everyday",500close.wav
+Test Announcement,,16:45,"everyday",500close.wav

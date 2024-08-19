@@ -8,7 +8,7 @@ from tabulate import tabulate
 import threading
 
 # Constants for file paths
-ROOT_DIRECTORY_PATH = "/home/autoannc/most-audio-scheduler/recordings"
+RECORDING_DIRECTORY_PATH = "/home/autoannc/most-audio-scheduler/recordings"
 SCHEDULE_FILE_PATH = "/home/autoannc/most-audio-scheduler/test_schedule.csv"
 # RECORDING_DIRECTORY_PATH = "D:/Github Repos/most-audio-scheduler/recordings"
 # SCHEDULE_FILE_PATH = "D:/Github Repos/most-audio-scheduler/test_schedule.csv"
