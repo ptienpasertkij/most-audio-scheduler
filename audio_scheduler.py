@@ -6,6 +6,8 @@ from datetime import datetime, timedelta
 import schedule
 from tabulate import tabulate
 import threading
+import signal
+import sys
 
 # Constants for file paths
 RECORDING_DIRECTORY_PATH = "/home/autoannc/most-audio-scheduler/recordings"
@@ -14,7 +16,12 @@ SCHEDULE_FILE_PATH = "/home/autoannc/most-audio-scheduler/announcement_schedule.
 # SCHEDULE_FILE_PATH = "D:/Github Repos/most-audio-scheduler/test_schedule.csv"
 
 # Setting up logging
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(message)s")
+logging.basicConfig(
+    filename="/home/autoannc/most-audio-scheduler/logs/audio_scheduler.log",
+    level=logging.INFO,
+    format="%(asctime)s - %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
 logger = logging.getLogger()
 
 
@@ -167,7 +174,19 @@ def run_scheduler():
         time.sleep(1)
 
 
+def shutdown_handler(signum, frame):
+    logger.info(
+        "Shutdown instruction received. Clearing scheduled announcements and exiting..."
+    )
+    schedule.clear()
+    sys.exit(0)
+
+
 def main():
+    # Register signal handler for graceful shutdown
+    signal.signal(signal.SIGINT, shutdown_handler)
+    signal.signal(signal.SIGTERM, shutdown_handler)
+
     # Load and validate the schedule
     schedule_data = load_schedule(SCHEDULE_FILE_PATH)
 
@@ -175,8 +194,16 @@ def main():
     schedule_announcements(schedule_data)
 
     # Start the scheduler in a separate thread to keep the main thread free
-    scheduler_thread = threading.Thread(target=run_scheduler)
+    scheduler_thread = threading.Thread(target=run_scheduler, daemon=True)
     scheduler_thread.start()
+
+    # Keep the main thread alive to listen for shutdown signals
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        logger.info("Exiting program...")
+        shutdown_handler(None, None)
 
 
 if __name__ == "__main__":
