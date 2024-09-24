@@ -8,6 +8,7 @@ from tabulate import tabulate
 import threading
 import signal
 import sys
+from http.server import SimpleHTTPRequestHandler, HTTPServer
 
 # Constants for file paths
 RECORDING_DIRECTORY_PATH = "/home/autoannc/most-audio-scheduler/recordings"
@@ -173,6 +174,26 @@ def run_scheduler():
         schedule.run_pending()
         time.sleep(1)
 
+        # HTTP Server to display "Auto announcement scheduler is running"
+
+
+class CustomHandler(SimpleHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header("Content-type", "text/html")
+        self.end_headers()
+        message = (
+            "<html><body><h1>Auto announcement scheduler is running</h1></body></html>"
+        )
+        self.wfile.write(bytes(message, "utf8"))
+
+
+def start_http_server():
+    server_address = ("", 80)  # Listen on all interfaces, port 80
+    httpd = HTTPServer(server_address, CustomHandler)
+    logger.info("Starting HTTP server on port 80...")
+    httpd.serve_forever()
+
 
 def shutdown_handler(signum, frame):
     logger.info(
@@ -196,6 +217,10 @@ def main():
     # Start the scheduler in a separate thread to keep the main thread free
     scheduler_thread = threading.Thread(target=run_scheduler, daemon=True)
     scheduler_thread.start()
+
+    # Start the HTTP server in a separate thread
+    http_server_thread = threading.Thread(target=start_http_server, daemon=True)
+    http_server_thread.start()
 
     # Keep the main thread alive to listen for shutdown signals
     try:
