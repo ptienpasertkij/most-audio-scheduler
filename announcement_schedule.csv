@@ -1,0 +1,12 @@
+EVENT NAME,EVENT TIME,ANNC TIME,DAYS TO PLAY,ANNC FILE NAME
+Movie,10:30 AM,10:20,"Thu, Fri, Sat, Sun",mars1030.wav
+Movie,11:30 AM,11:20,"Thu, Fri, Sat, Sun",trex1130.wav
+STEM Story Time,11:30 AM,11:25,"Thu, Fri, Sat, Sun",stemstorytime_sept-oct13.wav
+Demo - Circuits & Chips,12:00 PM,11:55,"Thu, Fri, Sat, Sun",chipsandcircuits.wav
+Movie,12:30 PM,12:20,"Fri, Sat, Sun",mars1230.wav
+Movie,1:30 PM,13:20,"Thu, Fri, Sat, Sun",trex130.wav
+Media Lab Demo,2:00 PM,13:55,"Thu, Fri, Sat, Sun",dailydemo-sept-oct30.wav
+Movie,2:30 PM,14:20,"Thu, Fri, Sat, Sun",ocean230_sept14-29.wav
+Movie,3:30 PM,15:20,"Thu, Fri, Sat, Sun",trex330.wav
+Pre-Closing Announcement,,16:45,everyday,445close.wav
+Closing Announcement,,17:00,everyday,500close.wav

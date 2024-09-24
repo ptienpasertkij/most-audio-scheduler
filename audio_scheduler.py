@@ -9,7 +9,7 @@ import threading
 
 # Constants for file paths
 RECORDING_DIRECTORY_PATH = "/home/autoannc/most-audio-scheduler/recordings"
-SCHEDULE_FILE_PATH = "/home/autoannc/most-audio-scheduler/test_schedule.csv"
+SCHEDULE_FILE_PATH = "/home/autoannc/most-audio-scheduler/announcement_schedule.csv"
 # RECORDING_DIRECTORY_PATH = "D:/Github Repos/most-audio-scheduler/recordings"
 # SCHEDULE_FILE_PATH = "D:/Github Repos/most-audio-scheduler/test_schedule.csv"
 

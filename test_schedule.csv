@@ -1,11 +1,8 @@
 EVENT NAME,EVENT TIME,ANNC TIME,DAYS TO PLAY,ANNC FILE NAME
 Movie,10:30 AM,10:20,"everyday",1020movie.wav
 Movie,11:30 AM,11:20,"everyday",1120movie.wav
-STEM Story Time,11:30 AM,11:25,"everyday",1125sst.wav
-Demo - Circuits & Chips,12:00 PM,11:55,"everyday",1155ccdemo.wav
 Movie,12:30 PM,12:20,"everyday",1220movie.wav
 Movie,1:30 PM,13:20,"everyday",120movie.wav
-Media Lab Demo,2:00 PM,13:55,"everyday",155mldemo.wav
 Movie,2:30 PM,14:20,"everyday",220movie.wav
 Movie,3:30 PM,15:20,"everyday",320movie.wav
 Pre-Closing Announcement,,16:45,"everyday",445close.wav
