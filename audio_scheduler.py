@@ -211,7 +211,7 @@ def main():
     # Load and validate the schedule
     schedule_data = load_schedule(SCHEDULE_FILE_PATH)
 
-    # # Schedule the announcements
+    # Schedule the announcements
     schedule_announcements(schedule_data)
 
     # Start the scheduler in a separate thread to keep the main thread free
