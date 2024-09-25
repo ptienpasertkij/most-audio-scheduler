@@ -2,7 +2,6 @@ import csv
 import os
 import time
 import logging
-from datetime import datetime, timedelta
 import schedule
 from tabulate import tabulate
 import threading
@@ -124,10 +123,11 @@ def load_schedule(file_path):
 
 
 def play_announcement(file_name):
-    """Play the announcement recording using VLC."""
+    """Play the announcement recording using paplay."""
     logger.info(f"Playing announcement: {file_name}")
     try:
-        os.system(f"cvlc --play-and-exit {file_name}")
+        # Use paplay instead of cvlc to play the file
+        os.system(f"paplay {file_name}")
     except Exception as e:
         logger.error(f"Failed to play announcement: {e}")
     logger.info(f"Finished playing: {file_name}")
@@ -149,8 +149,6 @@ def schedule_announcements(schedule_data):
         for day in event.days_to_play:
             mapped_day = day_mapping.get(day.strip().lower(), "")
             if mapped_day:
-                # schedule.every().day.at(event.annc_time).do(play_announcement, event.file_path).tag(day)
-                # logger.info(f"Scheduled announcement for {event.event_name} on {day} at {event.annc_time}")
                 if mapped_day == "everyday":
                     schedule.every().day.at(event.annc_time).do(
                         play_announcement, event.file_path
@@ -213,6 +211,14 @@ def main():
 
     # Schedule the announcements
     schedule_announcements(schedule_data)
+
+    # Play startup sound after the schedule is successfully loaded
+    startup_sound_path = os.path.join(RECORDING_DIRECTORY_PATH, "startup_sound.wav")
+    if os.path.isfile(startup_sound_path):
+        logger.info(f"Playing startup sound: {startup_sound_path}")
+        play_announcement(startup_sound_path)
+    else:
+        logger.warning(f"Startup sound not found: {startup_sound_path}")
 
     # Start the scheduler in a separate thread to keep the main thread free
     scheduler_thread = threading.Thread(target=run_scheduler, daemon=True)
