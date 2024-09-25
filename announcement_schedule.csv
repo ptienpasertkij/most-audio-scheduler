@@ -1,4 +1,5 @@
 EVENT NAME,EVENT TIME,ANNC TIME,DAYS TO PLAY,ANNC FILE NAME
+Startup,9:30 AM,9:20,everyday,startup_sound.wav
 Movie,10:30 AM,10:20,"Thu, Fri, Sat, Sun",mars1030.wav
 Movie,11:30 AM,11:20,"Thu, Fri, Sat, Sun",trex1130.wav
 STEM Story Time,11:30 AM,11:25,"Thu, Fri, Sat, Sun",stemstorytime_sept-oct13.wav
